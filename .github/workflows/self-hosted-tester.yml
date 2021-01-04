@@ -12,6 +12,23 @@ on:
   workflow_dispatch:
 
 jobs:
+  mixed:
+    strategy:
+      matrix:
+        # webserver: [apache-fpm, nginx-fpm]
+        webserver: [ nginx-fpm ]
+        #        tests: [testcmd, testnotddevapp, testddevapp]
+        tests: [ testcmd, testnotddevapp ]
+        os: [ ubuntu-20.04, [ self-hosted, macos ] ]
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Run a simple test script
+      run: .github/workflows/test.sh
+
   macos-selfhosted:
     runs-on: [self-hosted, macOS, X64]
 
