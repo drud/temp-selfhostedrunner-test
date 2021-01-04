@@ -19,7 +19,7 @@ jobs:
         webserver: [ nginx-fpm ]
         #        tests: [testcmd, testnotddevapp, testddevapp]
         tests: [ testcmd, testnotddevapp ]
-        os: [ ubuntu-20.04, [ self-hosted, macos ] ]
+        os: [ ubuntu-20.04, [ macos, self-hosted ], [windows,self-hosted] ]
       fail-fast: false
     runs-on: ${{ matrix.os }}
 
