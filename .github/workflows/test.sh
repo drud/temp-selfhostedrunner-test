@@ -1,7 +1,7 @@
 #!/bin/bash
 # This script is used to build drud/ddev using buildkite
 
-echo "--- github actions building at $(date) on $(hostname) for OS=$(go env GOOS) in $PWD with golang=$(go version) docker=$(docker version --format '{{.Server.Version}}') and docker-compose $(docker-compose version --short) ddev version=$(ddev --version)"
+echo "github actions building at $(date) on $(hostname) for OS=$(go env GOOS) in $PWD with golang=$(go version) docker=$(docker version --format '{{.Server.Version}}') and docker-compose $(docker-compose version --short) ddev version=$(ddev --version)"
 
 export GOTEST_SHORT=1
 export DRUD_NONINTERACTIVE=true
@@ -30,3 +30,4 @@ if ! docker ps >/dev/null 2>&1 ; then
   exit 1
 fi
 
+docker run drud/ddev-webserver:v1.16.3 bash -c "echo docker seems to be working"
