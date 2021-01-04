@@ -1,5 +1,5 @@
 @echo "Building using bash and build.sh"
-@pwd
+pwd
 "C:\Program Files\git\bin\bash" .github/workflows/test.sh
 
 if %ERRORLEVEL% EQU 0 (

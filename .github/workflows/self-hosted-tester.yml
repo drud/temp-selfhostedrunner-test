@@ -4,35 +4,38 @@ name: CI
 
 # Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   macos-selfhosted:
     runs-on: [self-hosted, macOS, X64]
 
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: See if docker works
+      - name: Run a simple test script
         run: .github/workflows/test.sh
 
   windows-selfhosted:
     runs-on: [self-hosted, Windows, X64]
 
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
     # Runs a single command using the runners shell
-    - name: See if docker works
+    - name: Run a simple Windows test script
+      run: .github/workflows/test.cmd
+
+  linux-normal:
+    runs-on: [Linux, x64]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Run a simple test script
       run: .github/workflows/test.sh
