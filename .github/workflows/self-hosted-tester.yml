@@ -13,12 +13,16 @@ on:
 
 jobs:
   mixed:
+    defaults:
+      run:
+        shell: bash
+
     strategy:
       matrix:
         # webserver: [apache-fpm, nginx-fpm]
-        webserver: [ nginx-fpm ]
+#        webserver: [ nginx-fpm ]
         #        tests: [testcmd, testnotddevapp, testddevapp]
-        tests: [ testcmd, testnotddevapp ]
+#        tests: [ testcmd, testnotddevapp ]
         os: [ ubuntu-20.04, [ macos, self-hosted ], [windows,self-hosted] ]
       fail-fast: false
     runs-on: ${{ matrix.os }}
@@ -46,7 +50,8 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Run a simple Windows test script
-      run: .github/workflows/test.cmd
+      shell: bash
+      run: .github/workflows/test.sh
 
   linux-normal:
     runs-on: [ubuntu-20.04]
