@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   macos-selfhosted:
-    runs-on: [self-hosted, macOS, x64]
+    runs-on: [self-hosted, macOS, X64]
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -27,7 +27,7 @@ jobs:
         run: docker ps
 
   windows-selfhosted:
-    runs-on: [self-hosted, Windows, x64]
+    runs-on: [self-hosted, Windows, X64]
 
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
