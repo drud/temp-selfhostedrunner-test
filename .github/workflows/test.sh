@@ -30,5 +30,4 @@ if ! docker ps >/dev/null 2>&1 ; then
   exit 1
 fi
 
-docker rm -f $(docker ps -aq)
 docker run --rm drud/ddev-webserver:v1.16.3 bash -c "echo docker seems to be working"
