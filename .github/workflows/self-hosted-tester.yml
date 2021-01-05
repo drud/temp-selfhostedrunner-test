@@ -31,7 +31,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: "see if we're self-hosted"
-      if: matrix.os[1] == "self-hosted"
+      if: matrix.os[1] == 'self-hosted'
       run: echo "we are self-hosted " && echo ${{ matrix.os[0] }}
     - name: Run a simple test script
       run: .github/workflows/test.sh
