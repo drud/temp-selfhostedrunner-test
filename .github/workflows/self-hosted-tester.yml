@@ -23,41 +23,44 @@ jobs:
 #        webserver: [ nginx-fpm ]
         #        tests: [testcmd, testnotddevapp, testddevapp]
 #        tests: [ testcmd, testnotddevapp ]
-        os: [ ubuntu-20.04, [ macos, self-hosted ], [windows,self-hosted] ]
+        os: [ [ macos, self-hosted ], [windows,self-hosted] ]
       fail-fast: false
     runs-on: ${{ matrix.os }}
 
     steps:
     - uses: actions/checkout@v2
 
+    - name: "see if we're self-hosted"
+      if: matrix.os[1] == "self-hosted"
+      run: echo "we are self-hosted " && echo ${{ matrix.os[0] }}
     - name: Run a simple test script
       run: .github/workflows/test.sh
 
-  macos-selfhosted:
-    runs-on: [self-hosted, macOS, X64]
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Run a simple test script
-        run: .github/workflows/test.sh
-
-  windows-selfhosted:
-    runs-on: [self-hosted, Windows, X64]
-
-    steps:
-    - uses: actions/checkout@v2
-
-    # Runs a single command using the runners shell
-    - name: Run a simple Windows test script
-      shell: bash
-      run: .github/workflows/test.sh
-
-  linux-normal:
-    runs-on: [ubuntu-20.04]
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Run a simple test script
-      run: .github/workflows/test.sh
+#  macos-selfhosted:
+#    runs-on: [self-hosted, macOS]
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#
+#      - name: Run a simple test script
+#        run: .github/workflows/test.sh
+#
+#  windows-selfhosted:
+#    runs-on: [self-hosted, Windows, X64]
+#
+#    steps:
+#    - uses: actions/checkout@v2
+#
+#    # Runs a single command using the runners shell
+#    - name: Run a simple Windows test script
+#      shell: bash
+#      run: .github/workflows/test.sh
+#
+#  linux-normal:
+#    runs-on: [ubuntu-20.04]
+#
+#    steps:
+#    - uses: actions/checkout@v2
+#
+#    - name: Run a simple test script
+#      run: .github/workflows/test.sh
